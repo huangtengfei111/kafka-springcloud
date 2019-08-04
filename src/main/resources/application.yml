@@ -1,0 +1,41 @@
+server:
+  port: 8082
+#禁用eureka
+eureka:
+  client:
+    enabled: false
+
+
+spring:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 1000
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1
+          defaultBrokerPort: 9092
+          auto-create-topics: false
+        streams:
+          binder:
+            configuration.commit.interval.ms: 1000
+      bindings:
+        output1:
+          destination: testtopic1
+          producer:
+            headerMode: embeddedHeaders
+#        output2:
+#          destination: new-user-and-friend-repaly
+#          producer:
+#            headerMode: embeddedHeaders
+        input1:
+          destination: testtopic1
+          consumer:
+            headerMode: embeddedHeaders
+
+
